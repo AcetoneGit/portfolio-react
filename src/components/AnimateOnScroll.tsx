@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 
-export default function AnimateOnScroll({ children, delay = 0, ...props }) {
+import { ReactNode } from "react";
+
+export default function AnimateOnScroll({ children, delay = 0, ...props }: { children: ReactNode; delay?: number; [key: string]: unknown }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 70 }}

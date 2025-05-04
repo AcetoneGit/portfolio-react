@@ -1,4 +1,3 @@
-import React from 'react';
 import Portfolio from './Portfolio';
 import CustomCursor from "./components/CustomCursor";
 import ScrollIndicator from "./components/ScrollIndicator";

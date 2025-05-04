@@ -14,12 +14,11 @@ export function useCardTilt(externalRef?: React.RefObject<HTMLDivElement>) {
       card.style.transform = `${translate} ${tilt}`.trim();
     };
 
-    (card as any)._setTranslate = (tr: string) => {
+    (card as HTMLDivElement & { _setTranslate?: (tr: string) => void })._setTranslate = (tr: string) => {
       translate = tr;
       updateTransform(card.style.getPropertyValue('--tilt') || '');
     };
 
-    // Mouse tilt handlers
     const handleMouseMove = (e: MouseEvent) => {
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left;

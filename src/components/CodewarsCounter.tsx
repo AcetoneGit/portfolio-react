@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 export function CodewarsCounter() {
   const [completed, setCompleted] = useState(0);
@@ -42,6 +42,7 @@ export function CodewarsCounter() {
     const interval = setInterval(fetchData, 3600000);
 
     return () => clearInterval(interval);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return <span className="font-bold text-accent">{completed}</span>;
