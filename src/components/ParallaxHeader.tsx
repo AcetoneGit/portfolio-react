@@ -22,7 +22,7 @@ const ParallaxHeader: React.FC = () => {
   }, []);
 
   return (
-    <header className="header-container flex flex-col md:flex-row items-center justify-between px-5 py-14 max-w-6xl mx-auto min-h-[80vh] gap-12 md:gap-4">
+    <header className="header-container flex flex-col md:flex-row items-center justify-between px-5 py-14 max-w-6xl mx-auto min-h-[65vh] gap-12 md:gap-4">
       <div
         ref={cardRef}
         className="header-text flex flex-col items-start md:max-w-xl gap-4 bg-gradient-to-br from-zinc-600/30 to-zinc-900/50 backdrop-blur-lg border border-white/10 shadow-2xl p-8 rounded-2xl transition-transform duration-200"

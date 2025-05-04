@@ -16,6 +16,8 @@ import wagon from "./assets/wagon.svg";
 import fortytwo from "./assets/42.svg";
 import codelynx from "./assets/codelynx.svg";
 import codewars from "./assets/codewars.svg";
+import Footer from "./components/Footer";
+import About from "./components/About";
 
 const threejsSvg = (
   <svg width="38" height="43" viewBox="0 0 38 43" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -114,8 +116,9 @@ const educations = [
 ];
 
 const Portfolio: React.FC = () => (
-  <div className="bg-neutral-900 text-neutral-100 min-h-screen">
+  <div className="portfolio-container bg-neutral-900 text-white min-h-screen">
     <ParallaxHeader />
+    <About />
 
     <AnimateOnScroll>
     <section className="skills-container max-w-6xl mx-auto my-12 px-5">
@@ -222,6 +225,9 @@ const Portfolio: React.FC = () => (
       </div>
     </section>
   </AnimateOnScroll>
+
+  <Footer />
+
     <div>
       <CalButton />
     </div>
