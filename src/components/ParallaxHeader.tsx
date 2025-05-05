@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { useCardTilt } from "../hooks/useCardTilt";
-import profilePic from "../assets/profile_pic_2.jpg";
+import profilePic from "../assets/profile_pic_2.webp";
 
 const ParallaxHeader: React.FC = () => {
   const cardRef = useCardTilt();
@@ -31,7 +31,7 @@ const ParallaxHeader: React.FC = () => {
           Antoine C
         </h1>
         <p className="name_2 text-xl font-semibold">
-          Développeur React / Rails - orienté sécurité
+          Développeur React / Rails
         </p>
         <div className="header-links">
           <ul className="flex items-center gap-4 mt-2">
