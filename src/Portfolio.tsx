@@ -20,9 +20,6 @@ import Footer from "./components/Footer";
 import About from "./components/About";
 import CalBtn from "./components/CalBtn";
 
-import videoQuizzy from './assets/quizzy_linkedin.mov';
-import videoFlappy from './assets/flappy_bird_2_react_native.mov';
-
 const threejsSvg = (
   <svg width="38" height="43" viewBox="0 0 38 43" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path fill-rule="evenodd" clip-rule="evenodd" d="M5.7346 0.971817L36.0112 18.4767C38.3367 19.8206 38.3368 23.1799 36.0115 24.5239L5.73423 42.0292C3.40538 43.3751 0.5 41.6914 0.5 39.0057V3.99513C0.5 1.31072 3.40451 -0.375901 5.7346 0.971817ZM4.23226 3.56854C3.90991 3.38205 3.5 3.61216 3.5 3.99513V39.0057C3.5 39.3874 3.90902 39.6188 4.23264 39.4321L34.5099 21.9268C34.8369 21.7378 34.8371 21.2631 34.5101 21.0742L4.23226 3.56854Z" fill="#f6f6f6"></path>
@@ -67,21 +64,21 @@ const projects = [
   },
   {
     img: flappy, title: "Flappy Bird Like",
-    video: videoFlappy,
+    video: "/assets/flappy_bird_2_react_native.mov",
     link: "https://github.com/AcetoneGit/flappy-bird-like",
     desc: "Mini-projet d'une heure avec assistance de l'IA. Premier jeu, gestion de la gravité, hitboxes.",
     tags: ["React Native", "TypeScript"],
   },
   {
     img: quizzy, title: "Quizzy",
-    video: videoQuizzy,
+    video: "/assets/quizzy_linkedin.mov",
     link: "https://github.com/AcetoneGit/quizzy",
     desc: "Base de travail d'un projet (FindIt). Notation, retour haptique, calcul du temps de réponse.",
     tags: ["React Native", "JavaScript"],
   },
   {
     img: krafte, title: "Kräfte",
-    video: "/assets/krafte_linkedin.mov",
+    video: "/assets/krafte_prototype.mov",
     link: "",
     desc: "WIP, générateur automatique de templates Ruby On Rails personnalisables.",
     tags: ["Ruby On Rails", "Services"],
