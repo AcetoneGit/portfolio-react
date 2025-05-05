@@ -14,7 +14,7 @@ import krafte from "./assets/krafte.png";
 
 import wagon from "./assets/wagon.svg";
 import fortytwo from "./assets/42.svg";
-import codelynx from "./assets/codelynx.svg";
+import CS50 from "./assets/CS50.png";
 import codewars from "./assets/codewars.svg";
 import Footer from "./components/Footer";
 import About from "./components/About";
@@ -51,13 +51,13 @@ const projects = [
     img: traboulesdesempires, title: "TDE",
     video: "",
     link: "https://github.com/AcetoneGit/rails-watch-list",
-    desc: "Create a watchlist for movies, connect with an API for the data. Minimalist.",
+    desc: "Crétion d'un watchlist de films. connexion API, minimaliste",
     tags: ["Ruby on Rails", "API", "CSS"],
   },
   {
     img: airbnbeat, title: "Airbnbeat",
     link: "https://github.com/Jeremy-Lgn/airbnbeat",
-    desc: "Clone of AirBNB. Team project (Le Wagon), cards, logo, sound effect, booking, design.",
+    desc: "Clone de AirBNB. Projet d'équipe (Le Wagon), cartes, logo, effet sonore, réservation, design.",
     tags: ["Ruby on Rails", "JavaScript", "PostGreSQL"],
   },
   {
@@ -70,21 +70,21 @@ const projects = [
     img: flappy, title: "Flappy Bird Like",
     video: videoFlappy,
     link: "https://github.com/AcetoneGit/flappy-bird-like",
-    desc: "One hour mini project with AI assistance. First game, gravity management, hitboxes.",
+    desc: "Mini-projet d'une heure avec assistance de l'IA. Premier jeu, gestion de la gravité, hitboxes.",
     tags: ["React Native", "TypeScript"],
   },
   {
     img: quizzy, title: "Quizzy",
     video: videoQuizzy,
     link: "https://github.com/AcetoneGit/quizzy",
-    desc: "Basis for a project (FindIt). Scoring, haptic feedback, response time calcs.",
+    desc: "Base de travail d'un projet (FindIt). Notation, retour haptique, calcul du temps de réponse.",
     tags: ["React Native", "JavaScript"],
   },
   {
     img: krafte, title: "Kräfte",
     video: videoKrafte,
     link: "",
-    desc: "WIP, automatic customizable rails template generator.",
+    desc: "WIP, générateur automatique de templates Ruby On Rails personnalisables.",
     tags: ["Ruby On Rails", "Services"],
   }
 ];
@@ -95,33 +95,33 @@ const educations = [
     title: "ThreeJS Journey",
     date: "2025",
     descriptions: [
-      "Masterclass on 3D development with Three.js. Creation of interactive 3D web experiences, animations, shaders and performance optimization for the web.",
-      "**IN PROGRESS**"
+      "Masterclass sur le développement 3D avec Three.js. Création d'expériences web 3D interactives, animations, shaders et optimisation des performances pour le web.",
+      "**EN COURS**"
     ]
   },
   {
-    img: codelynx,
-    title: "BeginJavaScript",
+    img: CS50,
+    title: "CS50 - Harvard",
     date: "2025",
     descriptions: [
-      '"Begin JavaScript" is a masterclass for JavaScript beginners. It teaches fundamental concepts such as variables, functions, loops and objects, with practical examples. The emphasis is on practice for better assimilation.',
-      "**IN PROGRESS**",
+      'Le CS50X de Harvard est un cours d’introduction à l’informatique qui enseigne les bases de la programmation et des algorithmes, tout en développant des compétences analytiques et techniques.',
+      "**EN COURS**",
     ],
   },
   {
     img: wagon,
     title: "Le Wagon - Web Development Bootcamp",
-    date: "2021",
+    date: "2025",
     descriptions: [
-      "Intensive 9-week fullstack dev. Ruby on Rails, JS, HTML/CSS, SQL, agile. Team projects, full web app from A to Z.",
+      "Bootcamp de 9 semaines en fullstack dev. Ruby on Rails, JS, HTML/CSS, SQL, agile. Projets en équipe, application web complète de A à Z.",
     ]
   },
   {
     img: fortytwo,
     title: "Piscine 42",
-    date: "2017-2019",
+    date: "2024",
     descriptions: [
-      "Intensive C immersion. Project-based, peer-to-peer review, teamwork. Algorithms, system programming.",
+      "Immersion intensive en C. Basé sur des projets, révision par les pairs, travail d'équipe. Algorithmes, programmation de systèmes.",
     ]
   },
 ];
@@ -205,7 +205,7 @@ const Portfolio: React.FC = () => (
           <div>
             <h3 className="font-bold text-md">CodeWars Challenges</h3>
             <p>
-  Completed: <span className="font-bold text-accent"><CodewarsCounter username={username} /></span>
+  Complétés: <span className="font-bold text-accent"><CodewarsCounter username={username} /></span>
 </p>
 
           </div>
