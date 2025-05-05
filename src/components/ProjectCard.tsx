@@ -26,9 +26,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ p, idx }) => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const [videoLoaded, setVideoLoaded] = useState<boolean>(false);
   const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [hasPlayed, setHasPlayed] = useState<boolean>(false);
   const cardRef = useRef<HTMLDivElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
   const isTouch = isTouchDevice();
 
+  // Observer d'entrée/sortie dans l'écran (pour mobile)
   useEffect(() => {
     if (!isTouch || !p.video) return;
 
@@ -36,9 +40,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ p, idx }) => {
       (entries) => {
         if (entries[0]?.isIntersecting) {
           setIsVisible(true);
+          setHasPlayed(false);
         } else {
           setIsVisible(false);
           setVideoLoaded(false);
+          setHasPlayed(false);
         }
       },
       { threshold: 0.4 }
@@ -51,7 +57,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ p, idx }) => {
       if (currentCardRef) observer.unobserve(currentCardRef);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isTouch]);
+  }, [isTouch, p.video]);
 
   const handleEnter = useCallback(() => {
     if (!isTouch) {
@@ -65,8 +71,20 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ p, idx }) => {
     }
   }, [isTouch]);
 
+  // Lancement de la vidéo sur mobile au clic sur play
+  const handleMobilePlay = () => {
+    if (videoRef.current) {
+      videoRef.current.play();
+      setHasPlayed(true);
+    }
+  };
+
+  // Affiche bouton "play" sur mobile, seulement si la carte est visible, une vidéo existe, et qu'on n'a pas cliqué "play" encore
+  const shouldShowPlayButton = !!p.video && isTouch && isVisible && !hasPlayed;
+
+  // Décide si la vidéo DOIT jouer (hover desktop ou play mobile)
   const shouldPlayVideo =
-    !!p.video && ((isTouch && isVisible) || (!isTouch && isHovered));
+    !!p.video && ((isTouch && hasPlayed) || (!isTouch && isHovered));
 
   return (
     <AnimateOnScroll delay={idx * 0.12} key={p.title}>
@@ -91,12 +109,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ p, idx }) => {
           />
           {shouldPlayVideo && (
             <video
+              ref={videoRef}
               className="w-full h-full object-cover absolute inset-0 z-10"
               src={p.video}
               muted
               loop
               preload="metadata"
-              autoPlay
+              autoPlay={!isTouch}
               playsInline
               style={{
                 opacity: videoLoaded ? 1 : 0,
@@ -106,7 +125,23 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ p, idx }) => {
               onLoadedData={() => setVideoLoaded(true)}
             />
           )}
-          <div className="absolute top-2 right-2 z-20">
+
+          {shouldShowPlayButton && (
+            <button
+              className="absolute inset-0 z-20 flex items-center justify-center bg-black/40"
+              onClick={handleMobilePlay}
+              aria-label="Lire la vidéo"
+              type="button"
+            >
+              {/* Icône play SVG stylisé */}
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="white">
+                <circle cx="32" cy="32" r="30" fill="rgba(0,0,0,0.5)"/>
+                <polygon points="26,20 26,44 48,32" fill="white"/>
+              </svg>
+            </button>
+          )}
+
+          <div className="absolute top-2 right-2 z-30">
             {p.link && (
               <a
                 href={p.link}
