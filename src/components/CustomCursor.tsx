@@ -1,13 +1,21 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const isMobile = () => window.innerWidth <= 768;
 
 const CustomCursor: React.FC = () => {
   const cursorRef = useRef<HTMLDivElement | null>(null);
   const followerRef = useRef<HTMLDivElement | null>(null);
+  const [isDesktop, setIsDesktop] = useState(() => !isMobile());
+
+  // Met à jour isDesktop sur resize (optionnel mais améliore UX si on redimensionne la fenêtre)
+  useEffect(() => {
+    const handleResize = () => setIsDesktop(!isMobile());
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
-    if (isMobile()) return;
+    if (!isDesktop) return; // ← N’exécute rien sur mobile
 
     const moveCursor = (e: MouseEvent) => {
       if (cursorRef.current) {
@@ -43,7 +51,9 @@ const CustomCursor: React.FC = () => {
         el.removeEventListener("mouseleave", resetCursor);
       });
     };
-  }, []);
+  }, [isDesktop]);
+
+  if (!isDesktop) return null;
 
   return (
     <>
@@ -67,7 +77,7 @@ const CustomCursor: React.FC = () => {
         .custom-cursor-follower.active {
           width: 3rem !important;
           height: 3rem !important;
-          background: var(--accent, #c026d3)!important;
+          background: var(--accent, #000000)!important;
           opacity: 0.4;
         }
       `}</style>

@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import SkillCard from "./components/SkillCard";
 import CodewarsCounter from "./components/CodewarsCounter";
 import ParallaxHeader from "./components/ParallaxHeader";
 import AnimateOnScroll from "./components/AnimateOnScroll";
+import ProjectCard from "./components/ProjectCard";
 
 import traboulesdesempires from "./assets/traboulesdesempires.png";
 import airbnbeat from "./assets/airbnbeat.png";
@@ -69,7 +70,7 @@ const projects = [
     img: flappy, title: "Flappy Bird Like",
     video: videoFlappy,
     link: "https://github.com/AcetoneGit/flappy-bird-like",
-    desc: "Mini project completed in one hour with AI assistance. First game, gravity management, hitboxes.",
+    desc: "One hour mini project with AI assistance. First game, gravity management, hitboxes.",
     tags: ["React Native", "TypeScript"],
   },
   {
@@ -148,61 +149,16 @@ const Portfolio: React.FC = () => (
     </section>
     </AnimateOnScroll>
     <AnimateOnScroll delay={0.1}>
-        <section className="projects-container max-w-6xl mx-auto my-12 px-5">
-          <h2 className="section-title text-3xl font-bold mb-5">PROJETS</h2>
-          <div className="projects-grid grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((p, idx) => {
-              const [isHovered, setIsHovered] = useState(false);
+  <section className="projects-container max-w-6xl mx-auto my-12 px-5">
+    <h2 className="section-title text-3xl font-bold mb-5">PROJETS</h2>
+    <div className="projects-grid grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {projects.map((p, idx) => (
+        <ProjectCard p={p} idx={idx} key={p.title} />
+      ))}
+    </div>
+  </section>
+</AnimateOnScroll>
 
-              return (
-                <AnimateOnScroll delay={idx * 0.12} key={p.title}>
-                  <div
-                    className="project-card bg-zinc-800/40 rounded-2xl shadow-lg border border-white/10 overflow-hidden flex flex-col"
-                    onMouseEnter={() => setIsHovered(true)}
-                    onMouseLeave={() => setIsHovered(false)}
-                  >
-                    <div className="project-image relative">
-                      <div className="project-overlay absolute inset-0 bg-black/40 z-10 pointer-events-none"></div>
-
-                      {/* Affichage conditionnel de la vidéo ou de l'image */}
-                      {isHovered && p.video ? (
-                        <video
-                          className="w-full aspect-video object-cover z-0"
-                          src={p.video}
-                          muted
-                          loop
-                          preload="metadata"
-                          autoPlay // Joue la vidéo dès qu'elle est prête
-                        />
-                      ) : (
-                        <img src={p.img} className="w-full aspect-video object-cover z-0" alt={p.title} />
-                      )}
-
-                      <div className="project-links absolute top-2 right-2 z-20">
-                        {p.link && (
-                          <a href={p.link} target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-circle btn-outline">
-                            <i className="fab fa-github"></i>
-                          </a>
-                        )}
-                      </div>
-                    </div>
-
-                    <div className="project-info p-4 flex-1 flex flex-col">
-                      <h3 className="project-title font-semibold text-lg">{p.title}</h3>
-                      <p className="project-description text-sm my-2">{p.desc}</p>
-                      <div className="project-tags mt-auto flex gap-2 flex-wrap">
-                        {p.tags.map((tag) => (
-                          <span className="tag px-2 py-1 bg-neutral-700 rounded text-xs" key={tag}>{tag}</span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </AnimateOnScroll>
-              );
-            })}
-          </div>
-        </section>
-      </AnimateOnScroll>
 
     <AnimateOnScroll delay={0.2}>
     <section className="education-container max-w-5xl mx-auto my-12 px-5">
