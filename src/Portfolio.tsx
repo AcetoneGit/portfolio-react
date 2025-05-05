@@ -22,7 +22,7 @@ import CalBtn from "./components/CalBtn";
 
 import videoQuizzy from './assets/quizzy_linkedin.mov';
 import videoFlappy from './assets/flappy_bird_2_react_native.mov';
-import videoKrafte from './assets/krafte_prototype.mov';
+import videoKrafte from '../public/assets/krafte_linkedin.mov';
 
 const threejsSvg = (
   <svg width="38" height="43" viewBox="0 0 38 43" fill="none" xmlns="http://www.w3.org/2000/svg">
