@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 type CodewarsCounterProps = {
   username: string;
@@ -6,10 +6,9 @@ type CodewarsCounterProps = {
 
 export function CodewarsCounter({ username }: CodewarsCounterProps) {
   const [completed, setCompleted] = useState(0);
+  const animating = useRef(false); // ref au lieu de variable locale
 
   useEffect(() => {
-    let animating = false;
-
     async function fetchData() {
       try {
         const response = await fetch(`https://www.codewars.com/api/v1/users/${username}`);
@@ -22,8 +21,8 @@ export function CodewarsCounter({ username }: CodewarsCounterProps) {
     }
 
     function animateCounter(finalValue: number) {
-      if (animating) return;
-      animating = true;
+      if (animating.current) return;
+      animating.current = true;
       const duration = 1500;
       const startValue = completed;
       const startTime = performance.now();
@@ -36,7 +35,7 @@ export function CodewarsCounter({ username }: CodewarsCounterProps) {
           requestAnimationFrame(updateCounter);
         } else {
           setCompleted(finalValue);
-          animating = false;
+          animating.current = false;
         }
       }
       requestAnimationFrame(updateCounter);
@@ -46,7 +45,7 @@ export function CodewarsCounter({ username }: CodewarsCounterProps) {
     const interval = setInterval(fetchData, 3600000);
 
     return () => clearInterval(interval);
-  }, [username, completed]);
+  }, [username]);
 
   return <span className="font-bold text-accent">{completed}</span>;
 }

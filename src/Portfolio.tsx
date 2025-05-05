@@ -32,6 +32,8 @@ const threejsSvg = (
   </svg>
 );
 
+const username = "AcetoneGit";
+
 const skills = [
   { icon: "devicon-rails-plain", name: "Ruby on Rails", level: "Avancé" },
   { icon: "devicon-react-original", name: "React / Native", level: "Débutant" },
@@ -247,7 +249,7 @@ const Portfolio: React.FC = () => (
           <div>
             <h3 className="font-bold text-md">CodeWars Challenges</h3>
             <p>
-  Completed: <span className="font-bold text-accent"><CodewarsCounter username="TonPseudoCodewars" /></span>
+  Completed: <span className="font-bold text-accent"><CodewarsCounter username={username} /></span>
 </p>
 
           </div>
