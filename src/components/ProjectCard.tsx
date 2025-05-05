@@ -1,7 +1,7 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useRef, useEffect } from "react";
 import AnimateOnScroll from "./AnimateOnScroll";
 
-interface Project {
+export interface Project {
   title: string;
   desc: string;
   img: string;
@@ -23,28 +23,58 @@ function isTouchDevice(): boolean {
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ p, idx }) => {
-  const [isHovered, setIsHovered] = useState(false);
-  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [isHovered, setIsHovered] = useState<boolean>(false);
+  const [videoLoaded, setVideoLoaded] = useState<boolean>(false);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const cardRef = useRef<HTMLDivElement | null>(null);
   const isTouch = isTouchDevice();
 
-  const handleEnter = useCallback(() => setIsHovered(true), []);
+  useEffect(() => {
+    if (!isTouch || !p.video) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setIsVisible(true);
+        } else {
+          setIsVisible(false);
+          setVideoLoaded(false);
+        }
+      },
+      { threshold: 0.4 }
+    );
+
+    if (cardRef.current) observer.observe(cardRef.current);
+
+    return () => {
+      if (cardRef.current) observer.unobserve(cardRef.current);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isTouch]);
+
+  const handleEnter = useCallback(() => {
+    if (!isTouch) {
+      setIsHovered(true);
+    }
+  }, [isTouch]);
   const handleLeave = useCallback(() => {
-    setIsHovered(false);
-    setVideoLoaded(false);
-  }, []);
-  const handleClick = useCallback(() => {
-    setIsHovered((prev) => !prev);
-    if (videoLoaded) setVideoLoaded(false);
-  }, [videoLoaded]);
+    if (!isTouch) {
+      setIsHovered(false);
+      setVideoLoaded(false);
+    }
+  }, [isTouch]);
+
+  const shouldPlayVideo =
+    !!p.video && ((isTouch && isVisible) || (!isTouch && isHovered));
 
   return (
     <AnimateOnScroll delay={idx * 0.12} key={p.title}>
       <div
+        ref={cardRef}
         className="project-card bg-zinc-800/40 rounded-2xl shadow-lg border border-white/10 overflow-hidden flex flex-col"
-        onMouseEnter={!isTouch ? handleEnter : undefined}
-        onMouseLeave={!isTouch ? handleLeave : undefined}
-        onClick={isTouch ? handleClick : undefined}
-        style={{ cursor: p.video && isTouch ? "pointer" : undefined }}
+        onMouseEnter={handleEnter}
+        onMouseLeave={handleLeave}
+        style={{ cursor: p.video && !isTouch ? "pointer" : undefined }}
         tabIndex={0}
       >
         <div className="relative w-full aspect-video mb-2">
@@ -53,12 +83,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ p, idx }) => {
             className="w-full h-full object-cover absolute inset-0 z-0"
             alt={p.title}
             style={{
-              opacity: videoLoaded && isHovered ? 0 : 1,
+              opacity: shouldPlayVideo && videoLoaded ? 0 : 1,
               transition: "opacity 0.2s"
             }}
             draggable={false}
           />
-          {isHovered && p.video && (
+          {shouldPlayVideo && (
             <video
               className="w-full h-full object-cover absolute inset-0 z-10"
               src={p.video}
@@ -88,7 +118,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ p, idx }) => {
             )}
           </div>
         </div>
-        {/* TEXTE TOUJOURS VISIBLE */}
         <div className="project-info p-4 flex-1 flex flex-col">
           <h3 className="project-title font-semibold text-lg">{p.title}</h3>
           <p className="project-description text-sm my-2">{p.desc}</p>
