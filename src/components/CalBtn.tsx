@@ -1,42 +1,19 @@
-import { getCalApi } from "@calcom/embed-react";
 import { useEffect } from "react";
-
-
-interface CalOptions {
-  namespace: string;
-}
-
-interface ButtonOptions {
-  calLink: string;
-  config: {
-    layout: string;
-  };
-  buttonText: string;
-}
-
-interface UIOptions {
-  hideEventTypeDetails: boolean;
-  layout: string;
-}
+import { getCalApi } from "@calcom/embed-react";
 
 const CalBtn: React.FC = () => {
   useEffect(() => {
     (async function () {
       const cal = await getCalApi({ namespace: "30min" });
-
-      const buttonOptions: ButtonOptions = {
+      cal("floatingButton", {
         calLink: "antoine-clement/30min",
-        config: { layout: "MONTH_VIEW" },
+        config: { layout: "month_view" },
         buttonText: "Discutons de votre projet !"
-      };
-
-      const uiOptions: UIOptions = {
+      });
+      cal("ui", {
         hideEventTypeDetails: false,
         layout: "month_view"
-      };
-
-      cal("floatingButton", buttonOptions);
-      cal("ui", uiOptions);
+      });
     })();
   }, []);
 

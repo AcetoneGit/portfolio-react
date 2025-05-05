@@ -1,14 +1,18 @@
 import { useEffect, useState } from "react";
 
-export function CodewarsCounter() {
+type CodewarsCounterProps = {
+  username: string;
+};
+
+export function CodewarsCounter({ username }: CodewarsCounterProps) {
   const [completed, setCompleted] = useState(0);
 
   useEffect(() => {
     let animating = false;
 
-    async function fetchData(){
+    async function fetchData() {
       try {
-        const response = await fetch("https://www.codewars.com/api/v1/users/AcetoneGit");
+        const response = await fetch(`https://www.codewars.com/api/v1/users/${username}`);
         if (!response.ok) throw new Error("Erreur lors de la récupération des données CodeWars");
         const data = await response.json();
         animateCounter(data.codeChallenges.totalCompleted);
@@ -42,10 +46,9 @@ export function CodewarsCounter() {
     const interval = setInterval(fetchData, 3600000);
 
     return () => clearInterval(interval);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [username, completed]);
 
   return <span className="font-bold text-accent">{completed}</span>;
-};
+}
 
 export default CodewarsCounter;
