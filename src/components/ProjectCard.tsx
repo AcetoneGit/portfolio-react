@@ -44,10 +44,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ p, idx }) => {
       { threshold: 0.4 }
     );
 
-    if (cardRef.current) observer.observe(cardRef.current);
+    const currentCardRef = cardRef.current;
+    if (currentCardRef) observer.observe(currentCardRef);
 
     return () => {
-      if (cardRef.current) observer.unobserve(cardRef.current);
+      if (currentCardRef) observer.unobserve(currentCardRef);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isTouch]);
