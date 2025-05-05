@@ -7,4 +7,9 @@ export default defineConfig({
     react(),
     tailwindcss()
   ],
+  preview: {
+    allowedHosts: [
+      'portfolio-ac-react-f04eed26ef43.herokuapp.com'
+    ]
+  }
 });
