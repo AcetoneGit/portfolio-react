@@ -20,7 +20,6 @@ const ParallaxHeader: React.FC = () => {
   const gradientRef = useRef<HTMLSpanElement>(null);
   const mousePos = useRef({ x: 0, y: 0 });
   const rafRef = useRef<number | null>(null);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const title = "Antoine Clement";
   type LetterAnim = 'idle' | 'up' | 'down';
   const [letterAnim, setLetterAnim] = useState<LetterAnim[]>(Array(title.length).fill('idle'));

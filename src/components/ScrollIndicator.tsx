@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { motion, useScroll, useSpring } from 'framer-motion';
+import { motion, useScroll } from 'framer-motion';
 
 const ScrollIndicator: React.FC = () => {
-  const { scrollYProgress } = useScroll();
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {

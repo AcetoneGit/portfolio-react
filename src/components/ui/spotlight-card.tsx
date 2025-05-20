@@ -1,6 +1,6 @@
 import { cn } from "../../lib/utils";
 import { motion } from "framer-motion";
-import { ReactNode, useRef, useState, forwardRef } from "react";
+import { ReactNode, useState, forwardRef } from "react";
 
 interface SpotlightCardProps {
   children: ReactNode;
