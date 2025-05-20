@@ -1,25 +1,33 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
+import { motion, useScroll, useSpring } from 'framer-motion';
 
-export default function ScrollIndicator() {
-  const [width, setWidth] = useState(0);
+const ScrollIndicator: React.FC = () => {
+  const { scrollYProgress } = useScroll();
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollTotal = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = scrollTotal ? window.scrollY / scrollTotal : 0;
-      setWidth(Math.min(progress * 100, 100));
+    const updateProgress = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      let value = docHeight > 0 ? scrollTop / docHeight : 0;
+      if (window.innerHeight + Math.ceil(window.scrollY) >= document.documentElement.scrollHeight) {
+        value = 1;
+      }
+      setProgress(value);
     };
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', updateProgress);
+    updateProgress();
+    return () => window.removeEventListener('scroll', updateProgress);
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 w-full h-1 z-50">
-      <div
-        className="bg-accent transition-all duration-300 ease-out h-full"
-        style={{ width: `${width}%` }}
+    <div className="fixed top-0 left-0 right-0 z-50">
+      <motion.div
+        className="h-1 bg-orange-500 origin-left"
+        style={{ scaleX: progress }}
       />
     </div>
   );
-}
+};
+
+export default ScrollIndicator;

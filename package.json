@@ -11,18 +11,20 @@
     "start": "vite preview --port $PORT --host"
   },
   "dependencies": {
-    "vite": "^6.3.5",
-    "@vitejs/plugin-react": "^4.4.1",
     "@calcom/embed-react": "^1.5.3",
+    "@tabler/icons-react": "^3.31.0",
     "@tailwindcss/vite": "^4.1.5",
-    "@tsparticles/engine": "^3.8.1",
+    "@vitejs/plugin-react": "^4.4.1",
+    "clsx": "^2.1.1",
     "daisyui": "^5.0.35",
     "framer-motion": "^12.9.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-tsparticles": "^2.12.2",
+    "react-icons": "^5.5.0",
+    "tailwind-merge": "^3.2.0",
     "tailwindcss": "^4.1.5",
-    "tsparticles": "^3.8.1"
+    "tailwindcss-animate": "^1.0.7",
+    "vite": "^6.3.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",

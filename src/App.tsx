@@ -1,15 +1,17 @@
+import React from 'react';
+import { ThemeProvider } from './context/ThemeContext';
 import Portfolio from './Portfolio';
-import CustomCursor from "./components/CustomCursor";
-import ScrollIndicator from "./components/ScrollIndicator";
+import ScrollIndicator from './components/ScrollIndicator';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <>
-      <ScrollIndicator />
-      <CustomCursor />
-      <Portfolio />
-    </>
+    <ThemeProvider>
+      <div className="app">
+        <ScrollIndicator />
+        <Portfolio />
+      </div>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;

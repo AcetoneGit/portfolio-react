@@ -3,7 +3,8 @@ import SkillCard from "./components/SkillCard";
 import CodewarsCounter from "./components/CodewarsCounter";
 import ParallaxHeader from "./components/ParallaxHeader";
 import AnimateOnScroll from "./components/AnimateOnScroll";
-import ProjectCard from "./components/ProjectCard";
+import ProjectStackSection from "./components/ProjectStackSection";
+import AnimatedDashedPath from "./components/AnimatedDashedPath";
 
 import traboulesdesempires from "./assets/traboulesdesempires.png";
 import airbnbeat from "./assets/airbnbeat.png";
@@ -37,7 +38,7 @@ const skills = [
   { icon: "devicon-typescript-plain", name: "TypeScript", level: "Débutant" },
   { icon: "devicon-tailwindcss-original", name: "TailwindCSS", level: "Avancé" },
   { icon: "devicon-postgresql-plain", name: "PostGreSQL", level: "Débutant" },
-  { icon: "devicon-figma-plain", name: "Figma", level: "Avancé" },
+  { icon: "devicon-vite-plain", name: "Vite.js", level: "Débutant" },
   { icon: "devicon-git-plain", name: "Git", level: "Avancé" },
   { icon: "devicon-python-plain", name: "Python", level: "Débutant" },
 ];
@@ -100,9 +101,9 @@ const educations = [
     title: "CS50 - Harvard",
     date: "2025",
     descriptions: [
-      'Le CS50X de Harvard est un cours d’introduction à l’informatique qui enseigne les bases de la programmation et des algorithmes, tout en développant des compétences analytiques et techniques.',
+      "Le CS50X de Harvard est un cours d'introduction à l'informatique qui enseigne les bases de la programmation et des algorithmes, tout en développant des compétences analytiques et techniques.",
       "**EN COURS**",
-    ],
+    ]
   },
   {
     img: wagon,
@@ -127,90 +128,94 @@ const Portfolio: React.FC = () => (
     <ParallaxHeader />
     <About />
 
+    <AnimateOnScroll delay={0.2}>
+      <AnimatedDashedPath />
+    </AnimateOnScroll>
     <AnimateOnScroll>
-    <section className="skills-container max-w-6xl mx-auto my-12 px-5">
-      <h2 className="section-title text-3xl font-bold mb-5">STACK</h2>
-<div className="skills-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-  {skills.map((skill, idx) => (
-    <AnimateOnScroll delay={0.12 * idx} key={skill.name}>
-      <SkillCard
-        icon={skill.icon}
-        name={skill.name}
-        level={skill.level}
-      />
+      <section id="skills" className="skills-container max-w-6xl mx-auto my-12 px-5">
+        <h2 className="section-title text-3xl font-bold mb-5">STACK</h2>
+        <div className="skills-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 gap-x-6 gap-y-6">
+          {skills.map((skill, idx) => (
+            <AnimateOnScroll delay={0.12 * idx} key={skill.name}>
+              <SkillCard
+                icon={skill.icon}
+                name={skill.name}
+                level={skill.level}
+              />
+            </AnimateOnScroll>
+          ))}
+        </div>
+      </section>
     </AnimateOnScroll>
-  ))}
-</div>
-
-    </section>
-    </AnimateOnScroll>
-    <AnimateOnScroll delay={0.1}>
-  <section className="projects-container max-w-6xl mx-auto my-12 px-5">
-    <h2 className="section-title text-3xl font-bold mb-5">PROJETS</h2>
-    <div className="projects-grid grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      {projects.map((p, idx) => (
-        <ProjectCard p={p} idx={idx} key={p.title} />
-      ))}
-    </div>
-  </section>
-</AnimateOnScroll>
-
 
     <AnimateOnScroll delay={0.2}>
-    <section className="education-container max-w-5xl mx-auto my-12 px-5">
-      <h2 className="section-title text-3xl font-bold mb-4">EDUCATION</h2>
-      <div className="education-timeline flex flex-col gap-7">
-  {educations.map((edu, idx) => (
-    <AnimateOnScroll delay={idx * 0.13} key={edu.title}>
-      <div className="education-item flex items-start gap-6">
-        <div className="education-logo w-16 h-16 flex items-center justify-center">
-          {typeof edu.img === "string"
-            ? <img src={edu.img as string} alt={edu.title} className="w-14 h-14 object-contain" />
-            : edu.img
-          }
-        </div>
-        <div className="education-divider mx-2 text-3xl font-bold text-neutral-200">|</div>
-        <div className="education-content flex-1">
-          <div className="education-header flex items-center gap-4">
-            <h3 className="education-title font-semibold text-lg">{edu.title}</h3>
-            <span className="education-date badge badge-outline">{edu.date}</span>
-          </div>
-          <div>
-            {edu.descriptions.map((txt, i) =>
-              txt.startsWith("**")
-                ? <p key={i} className="education-description font-bold uppercase text-accent">{txt.replace(/\*\*/g, "")}</p>
-                : <p key={i} className="education-description">{txt}</p>
-            )}
-          </div>
-        </div>
-      </div>
+      <AnimatedDashedPath />
     </AnimateOnScroll>
-  ))}
-</div>
-    </section>
-  </AnimateOnScroll>
+    <AnimateOnScroll>
+      <ProjectStackSection projects={projects} />
+    </AnimateOnScroll>
 
-  <AnimateOnScroll delay={0.5}>
-    <section className="codewars-container max-w-3xl mx-auto my-12 px-5">
-      <h2 className="section-title text-3xl font-bold mb-4">CHALLENGES</h2>
-      <div className="codewars-stats flex gap-4">
-        <div className="codewars-card flex-1 bg-zinc-800/40 rounded-xl p-6 shadow border border-white/10 flex items-center gap-5">
-          <div className="codewars-logo">
-            <img src={codewars} alt="Codewars" className="w-10 h-10 object-contain" />
+    <AnimateOnScroll delay={0.2}>
+      <AnimatedDashedPath />
+    </AnimateOnScroll>
+    <AnimateOnScroll>
+      <section className="education-container max-w-5xl mx-auto my-12 px-5 pt-40 sm:pt-16">
+        <h2 className="section-title text-3xl font-bold mb-4">EDUCATION</h2>
+        <div className="education-timeline flex flex-col gap-7">
+    {educations.map((edu, idx) => (
+      <AnimateOnScroll delay={idx * 0.13} key={edu.title}>
+        <div className={`education-item flex items-start gap-6 ${idx % 2 === 1 ? 'flex-row-reverse' : 'flex-row'}`}>
+          <div className="education-logo w-16 h-16 flex items-center justify-center">
+            {typeof edu.img === "string"
+              ? <img src={edu.img as string} alt={edu.title} className="w-14 h-14 object-contain" />
+              : edu.img
+            }
           </div>
-          <div>
-            <h3 className="font-bold text-md">CodeWars Challenges</h3>
-            <p>
-  Complétés: <span className="font-bold text-accent"><CodewarsCounter username={username} /></span>
-</p>
-
+          <div className="education-divider mx-2 text-3xl font-bold text-neutral-200">|</div>
+          <div className="education-content flex-1">
+            <div className="education-header flex items-center gap-4">
+              <h3 className="education-title font-semibold text-lg">{edu.title}</h3>
+              <span className="education-date badge badge-outline">{edu.date}</span>
+            </div>
+            <div>
+              {edu.descriptions.map((txt, i) =>
+                txt.startsWith("**")
+                  ? <p key={i} className="education-description font-bold uppercase text-[--accent]">{txt.replace(/\*\*/g, "")}</p>
+                  : <p key={i} className="education-description">{txt}</p>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-  </AnimateOnScroll>
+      </AnimateOnScroll>
+    ))}
+  </div>
+      </section>
+    </AnimateOnScroll>
 
-  <Footer />
+    <AnimateOnScroll delay={0.2}>
+      <AnimatedDashedPath />
+    </AnimateOnScroll>
+    <AnimateOnScroll>
+      <section className="codewars-container max-w-3xl mx-auto my-12 px-5">
+        <h2 className="section-title text-3xl font-bold mb-4">CHALLENGES</h2>
+        <div className="codewars-stats flex gap-4">
+          <div className="codewars-card flex-1 bg-zinc-800/40 rounded-xl p-6 shadow border border-white/10 flex items-center gap-5">
+            <div className="codewars-logo">
+              <img src={codewars} alt="Codewars" className="w-10 h-10 object-contain" />
+            </div>
+            <div>
+              <h3 className="font-bold text-md">CodeWars Challenges</h3>
+              <p>
+    Complétés: <span className="font-bold text-[--accent]"><CodewarsCounter username={username} /></span>
+  </p>
+
+            </div>
+          </div>
+        </div>
+      </section>
+    </AnimateOnScroll>
+
+    <Footer />
 
     <div>
       <CalBtn />

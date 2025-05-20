@@ -1,0 +1,61 @@
+.animated-dash-path {
+  stroke-dasharray: 16 12;
+  animation: dashmove 2s linear infinite, dashpulse 1.2s ease-in-out infinite;
+}
+
+@keyframes dashmove {
+  to {
+    stroke-dashoffset: 28;
+  }
+}
+
+@keyframes dashpulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 0px #fff8) brightness(1);
+    stroke-width: 3;
+  }
+  50% {
+    filter: drop-shadow(0 0 0px #0008) brightness(0.7);
+    stroke-width: 2;
+  }
+}
+
+.animated-dot {
+  fill: #fff;
+  opacity: 1;
+  animation: dotpulse 1.2s cubic-bezier(0.4,0,0.2,1) infinite;
+}
+
+@keyframes dotpulse {
+  0%, 100% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 0.3;
+    filter: brightness(0.5);
+  }
+}
+
+.animated-dash-rect {
+  fill: #fff;
+  opacity: 0;
+  transition: opacity 0.3s;
+  animation: none;
+}
+
+.dashed-hover-reveal:hover .animated-dash-rect {
+  opacity: 1;
+  animation: dashrectpulse 1.2s cubic-bezier(0.4,0,0.2,1) infinite;
+}
+
+@keyframes dashrectpulse {
+  0%, 100% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 0.3;
+    filter: brightness(0.5);
+  }
+} 
