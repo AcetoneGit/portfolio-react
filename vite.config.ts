@@ -9,7 +9,7 @@ export default defineConfig({
   ],
   preview: {
     allowedHosts: [
-      'portfolio-ac-react-f04eed26ef43.herokuapp.com',
+      'portfolio-react-ac-10d36fe1a5df.herokuapp.com',
       "www.ac-portfolio.online",
       'ac-portfolio.online'
     ]
