@@ -267,7 +267,7 @@ const ParallaxHeader: React.FC = () => {
             <i className="fab fa-github text-2xl hover:text-[--accent] transition-colors" />
           </a>
           <a
-            href="https://www.linkedin.com/in/your-linkedin"
+            href="https://www.linkedin.com/in/antoine-clement-xperience/"
             target="_blank"
             rel="noopener noreferrer"
             className="social-link"
